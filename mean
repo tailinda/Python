@@ -1,0 +1,30 @@
+def calc_mean(numbers):
+	count = float(len(numbers)) #數數字，len回傳元素個數
+	total = 0 #讓total為0
+	for number in numbers:  #讓數字進入迴圈
+		total = total + number  #總數=總數+數字，累加功能
+	mean = total/count  #平均值=總數/個數
+	return mean  #回傳平均值
+
+def standerr (numbers, mean):
+	step1 = 0  #第一步驟為0
+	for number in numbers:  #相同讓數字進入迴圈
+		step1 = step1 + (number - mean) ** 2  #第一步=把每個數值和平均值相減，插值平方並累加
+	step2 = 0  #第二步驟為0
+	step2 = step1 / float(len( numbers ))  #第二步=把第一步/輸入數字的個數
+	step3 = step2 ** 0.5  #第三步=第二步的結果開平方
+	return step3  #回傳結果為母體標準差
+
+if __name__ == '__main__': 
+	l=list()
+	numbers=list()
+
+	a=input ("輸入你要的數字: ")
+	a=a.split(' ') #輸入要用空格間格
+	for num in a:
+		numbers.append(float(num))
+
+	mean = calc_mean( numbers )
+	step3 = standerr(numbers, mean)
+	print ('平均差: %s' %mean)
+	print ('母體標準差: %s' % step3)
