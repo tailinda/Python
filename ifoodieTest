@@ -17,10 +17,8 @@ def allurl(url):
         re = rq.get (finallyURL)
         encoding = "cp950"
         return re.text
-
-# result = allurl('https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page=')
-
 '''
+result = allurl('https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page=')
 or
 url = 'https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page='
 result = allurl(url)
