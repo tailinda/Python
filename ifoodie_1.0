@@ -12,6 +12,12 @@ import pandas as pd
 from pandas import ExcelWriter
 from io import StringIO
 
+# henry1758f
+import os 
+os.system("pip install openpyxl")
+os.system("pip install lxml")
+os.system("pip install pandas") 
+#
 
 url = "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page=1"
 re = rq.get (url)
@@ -30,7 +36,7 @@ review_count = []
 gets = soup.find_all("div",{"class":"jsx-1102741263 restaurant-info"})
 for get in gets:
     try:
-        branch_name.append(get.find("a",{"class":"jsx-1102741263 title-text"}).string)
+        branch_name.append(get.find("a",{"class":"jsx-1102741263 title-text"}).string.strip()) # henry1758f
     except:
         branch_name.append(np.nan)
     try:
@@ -63,9 +69,13 @@ for get in gets:
 df = pd.DataFrame(columns = ['分店名稱', '類型1', '平均價格', '地址', '星數', '評論數'])
 for n in range(0, len(branch_name)):
         df.loc[n] = [branch_name[n], category_result[n], avg_price_result[n], address[n], star_result[n], review_count_result[n]]
-  
-writer = ExcelWriter('C:/Users/tailinda/Desktop/ifoodieTest.xlsx')
-df.to_excel(writer, index = False)
+# henry1758f
+from pathlib import Path
+home = str(os.getcwd()+'/test.xlsx')
+writer = ExcelWriter(home)
+# 
+
+df.to_excel(writer, index=False)
 writer.save()
 
 '''
