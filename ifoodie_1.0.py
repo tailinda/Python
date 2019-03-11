@@ -31,43 +31,94 @@ avg_price = []
 address = []
 star = []
 review_count = []
-
+avg_price_result=[]
+category_temp=[]
+nastr="<div class=\"jsx-1102741263 avg-price\">· 均消 <!-- -->$NA</div>"
 
 gets = soup.find_all("div",{"class":"jsx-1102741263 restaurant-info"})
 for get in gets:
     try:
         branch_name.append(get.find("a",{"class":"jsx-1102741263 title-text"}).string.strip()) # henry1758f
     except:
-        branch_name.append(np.nan)
+        branch_name.append("n/a")
     try:
+        category_temp = get.find_all("a",{"class":"jsx-1102741263 category"})
+        print(category_temp[0].text)        
+        print(category_temp[1].text) 
+        print(category_temp[2].text) 
+        
         category.append(get.find_all("a",{"class":"jsx-1102741263 category"}))
-        category_result = [category[i][j].text for i in range(0, len(category)) for j in range(1, 3)]
+        category_result = [category[i][1].text for i in range(0, len(category))]
     except:
-        category.append(np.nan)
+        category.append("n/a")
     try:
-        avg_price.append(get.find_all("div",{"class":"jsx-1102741263 avg-price"}))
-        avg_price_result = [avg_price[i][0].text for i in range(0, len(avg_price))]
-    except:
-        avg_price.append(np.nan)
+        #找到 avg_price 篩選後剩下文字
+        rr = get.find("div",{"class":"jsx-1102741263 avg-price"}).text
+        #把 rr 放到 avg_price_result 陣列中
+        avg_price_result.append(rr)
+        print(avg_price_result)
+        """
+        else:
+            avg_price_result.append("N/A")
+            #avg_price.append(get.find_all("div",{"class":"jsx-1102741263 avg-price"}))
+            #print(len(avg_price))
+            #print(avg_price)
+            print(avg_price_result)
+        
+        
+        
+        
+        
+        if len(get.find_all("div",{"class":"jsx-1102741263 avg-price"})):
+            avg_price.append(get.find_all("div",{"class":"jsx-1102741263 avg-price"}))
+            print(len(avg_price))
+            avg_price_result = [avg_price[i][0].text for i in range(0, len(avg_price))]
+            print(avg_price_result)
+        else:
+            avg_price.append("N/A")
+            #avg_price.append(get.find_all("div",{"class":"jsx-1102741263 avg-price"}))
+            print(len(avg_price))
+            print(avg_price)
+            print(avg_price_result)
+
+            avg_price_result = [avg_price[i][0].text for i in range(0, len(avg_price))]
+            print(avg_price)
+            print(avg_price_result)
+           """ 
+    #例外狀況當作 e
+    except Exception as e:
+        print(e)
+        #加上 N/A
+        avg_price_result.append("N/A")
+        print(avg_price_result)
+
     try:
         address.append((get.find("div",{"class":"jsx-1102741263 address-row"}).string).strip())
     except:
-        address.append(np.nan)
+        address.append("n/a")
     try:
         star.append(get.find_all("div",{"class":"jsx-1207467136 text"}))
         star_result = [star[i][0].text for i in range(0, len(star))]
     except:
-        star.append(np.nan)
+        star.append("n/a")
     try:
         review_count.append(get.find_all("a",{"class":"jsx-1102741263 review-count"}))
         review_count_result = [review_count[i][0].text for i in range(0, len(review_count))]
     except:
-        review_count.append(np.nan)
+        review_count.append("n/a")
         
 
 # 存在表格 CODE
 df = pd.DataFrame(columns = ['分店名稱', '類型1', '平均價格', '地址', '星數', '評論數'])
 for n in range(0, len(branch_name)):
+        print(branch_name)
+        print(category_result)
+        print(avg_price_result)
+        print(address)
+        print(star_result)
+        print(review_count_result)
+        print(n)
+        print(len(branch_name))
         df.loc[n] = [branch_name[n], category_result[n], avg_price_result[n], address[n], star_result[n], review_count_result[n]]
 # henry1758f
 from pathlib import Path
