@@ -19,24 +19,30 @@ os.system("pip install lxml")
 os.system("pip install pandas") 
 #
 
-url = "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page=1"
-re = rq.get (url)
+# 搜尋網頁
+url = "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list?page="
+
+#for 迴圈加上頁數
+for i in range (1, 3):
+    finalurl = url + str(i)
+
+re = rq.get (finalurl)
 soup = BeautifulSoup ( re.text, "lxml" )
 encoding = "cp950"
 
-
 branch_name = []
-category = []
 avg_price = []
 address = []
 star = []
 review_count = []
 avg_price_result = []
+category = []
 category_temp = []
 category_temp_result1 = []
 category_temp_result2 = []
-
-nastr="<div class=\"jsx-1102741263 avg-price\">· 均消 <!-- -->$NA</div>"
+category_temp_result3 = []
+category_temp_result4 = []
+category_temp_result5 = []
 
 
 gets = soup.find_all("div",{"class":"jsx-1102741263 restaurant-info"})
@@ -61,6 +67,33 @@ for get in gets:
         #加上 N/A
         category_temp_result2.append("N/A")
         print(category_temp_result2)
+    try:
+        category_temp = get.find_all("a",{"class":"jsx-1102741263 category"})
+        category_temp_result3.append(category_temp[3].text)       
+        print(category_temp_result3)
+    except:
+        #加上 N/A
+        category_temp_result3.append("N/A")
+        print(category_temp_result3)
+    try:
+        category_temp = get.find_all("a",{"class":"jsx-1102741263 category"})
+        category_temp_result4.append(category_temp[4].text)       
+        print(category_temp_result4)
+    except:
+        #加上 N/A
+        category_temp_result4.append("N/A")
+        print(category_temp_result4)
+    try:
+        category_temp = get.find_all("a",{"class":"jsx-1102741263 category"})
+        category_temp_result5.append(category_temp[5].text)       
+        print(category_temp_result5)
+    except:
+        #加上 N/A
+        category_temp_result5.append("N/A")
+        print(category_temp_result5)
+
+
+
     try:
         #找到 avg_price 篩選後剩下文字
         rr = get.find("div",{"class":"jsx-1102741263 avg-price"}).text
@@ -93,7 +126,6 @@ for get in gets:
            """ 
     #例外狀況當作 e
     except Exception as e:
-        print(e)
         #加上 N/A
         avg_price_result.append("N/A")
         print(avg_price_result)
@@ -115,18 +147,20 @@ for get in gets:
         
 
 # 存在表格 CODE
-df = pd.DataFrame(columns = ['分店名稱', '類型1', '類型2', '平均價格', '地址', '星數', '評論數'])
+df = pd.DataFrame(columns = ['分店名稱', '類型1', '類型2', '類型3', '類型4', '類型5','平均價格', '地址', '星數', '評論數'])
 for n in range(0, len(branch_name)):
-        print(branch_name)
-        print(category_temp_result1)
-        print(category_temp_result2)
-        print(avg_price_result)
-        print(address)
-        print(star_result)
-        print(review_count_result)
-        print(n)
-        print(len(branch_name))
-        df.loc[n] = [branch_name[n], category_temp_result1[n], category_temp_result2[n], avg_price_result[n], address[n], star_result[n], review_count_result[n]]
+    print(branch_name)
+    print(category_temp_result1)
+    print(category_temp_result2)
+    print(avg_price_result)
+    print(address)
+    print(star_result)
+    print(review_count_result)
+    print(n)
+    print(len(branch_name))
+    df.loc[n] = [branch_name[n], category_temp_result1[n], category_temp_result2[n], category_temp_result3[n],
+           category_temp_result4[n], category_temp_result5[n],
+           avg_price_result[n], address[n], star_result[n], review_count_result[n]]
 
 # henry1758f
 from pathlib import Path
