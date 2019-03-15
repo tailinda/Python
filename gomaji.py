@@ -91,6 +91,7 @@ def crawl_gomaji(path):
 # 一個標籤會有 16 個城市，一個城市內的一個標籤就會有一個 df ( 意即就會跑一次 crawl_gomaji )
 # 一個的全部城市跑完之後再將每個城市合併起來
 # Why? 因為 BD 想要最終格式是 excel 且底下的 sheet 是以標籤去區分
+
 dfs = []
 writer = ExcelWriter('C:/Users/tailinda/Desktop/gomaji.xlsx')
 for i in range(0, len(tags_url)):
