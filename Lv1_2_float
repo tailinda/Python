@@ -1,0 +1,3 @@
+temperatureC = input('請輸入攝氏溫度： ')
+temperatureF = ( float ( temperatureC ) * float ( 9 / 5 ) + 32 )
+print(temperatureF)
