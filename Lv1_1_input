@@ -1,3 +1,6 @@
 name = input('請輸入您的名字： ')
 old = input('請輸入您的年紀： ')
-print('My name is ' + name + '.' + ' I am ' + old + ' years old.' )
+print('My name is ' + name + '.' + ' I am ' + old + ' years old.' 
+
+//f string python
+//print(My name is (name). I am (old) years old.)
