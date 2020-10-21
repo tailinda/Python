@@ -1,0 +1,13 @@
+age = float(input("請輸入你的年紀："))
+adult = int(input("請輸入是否有成年人陪同？"))
+
+if age >= 0 and adult >= 0:
+    print("普遍級")
+    if ( 12 > age > 6 and adult > 0 ) or ( age > 12 ):
+        print("保護級")
+        if ( age >= 12 ):
+            print("輔12級")
+            if ( age >= 15 ):
+                print("輔15級")
+                if ( age >= 18 ):
+                    print("限制級")
