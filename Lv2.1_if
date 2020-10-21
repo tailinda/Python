@@ -1,0 +1,12 @@
+score = int(input ("成績："))
+
+if score >= 90:
+    print("成績 A")
+elif 80 <= score < 90:
+    print("成績 B")
+elif 70 <= score < 80:
+    print("成績 C")
+elif 60 <= score < 70:
+    print("成績 D")
+else:
+    print("成績 E")
