@@ -1,0 +1,8 @@
+information = [ "Linda", "0922-953-684", "12/06" ]
+information.append(input("請輸入地址"))
+
+print(information[3])
+
+t1 = ("1","2","3",input("地址"))
+
+print(t1[3])
