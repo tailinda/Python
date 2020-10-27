@@ -1,0 +1,6 @@
+movie_name = []
+
+for i in range(5):
+    movie_name.append(input("你喜歡的電影："))
+
+print(movie_name) 
