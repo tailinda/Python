@@ -1,0 +1,17 @@
+singers = ['周杰倫', '林俊傑', '蔡依林', '鄧紫棋', '五月天']
+#把五月天改成周杰倫之後上場
+singers.insert(1, '五月天')
+singers.pop(5)
+print(singers)
+
+
+people = {
+        input('第1位名字') : input('第1位電話'),
+        input('第2位名字') : input('第2位電話'),
+        input('第3位名字') : input('第3位電話'),
+        input('第4位名字') : input('第4位電話'),
+        input('第5位名字') : input('第5位電話')
+        }
+
+print(people[input('查詢的名字')])
+
