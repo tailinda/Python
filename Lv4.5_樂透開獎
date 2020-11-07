@@ -1,0 +1,10 @@
+import random
+
+Lotto_number = []
+i = 0
+
+for i in range(6):
+    n = random.randint(1,42)
+    Lotto_number.append(n)
+
+print(Lotto_number)    
