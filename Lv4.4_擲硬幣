@@ -1,0 +1,27 @@
+import random
+
+list1 = []
+
+for i in range(100):
+   n = random.randint(0,1) # 0 = 反面 1 = 正面
+   list1.append(n)
+
+print("結果:", list1)
+
+
+import random
+
+head = 0
+tail = 0
+count = 0 
+list2 = []
+
+while ( head <= 100 ) :
+        n = random.randint(0,1) # 0 = 反面 1 = 正面
+        list2.append(n)
+        count = count + 1
+        if n == 1:
+            head = head + 1
+   
+print("總次數：", count)
+print("結果:", list2)
