@@ -1,0 +1,10 @@
+import random
+
+def roll_dice():
+    results = []
+    for i in range(3):
+        results.append(random.randint(1,6))
+    return results
+
+print(roll_dice())
+
