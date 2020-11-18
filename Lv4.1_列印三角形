@@ -1,0 +1,20 @@
+x = int(input("請輸入想要列印的行數"))
+
+for i in range(x):
+    print("*" * ( i + 1 ) )
+
+
+for i in range(x):
+    print("*" * ( x - i ) )
+
+
+for i in range(x):
+    print(" " * ( x - i ), "*" * ( i + 1 ) )
+    
+
+for i in range(x):
+    print("*" * ( x - i ), " " * ( i + 1 ) )
+
+
+for i in range(x):
+    print(" " * ( x - i ), " *" * ( i + 1 ) )
